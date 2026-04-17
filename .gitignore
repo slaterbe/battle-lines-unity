@@ -1,0 +1,57 @@
+# Unity generated folders
+[Ll]ibrary/
+[Tt]emp/
+[Oo]bj/
+[Bb]uild/
+[Bb]uilds/
+[Ll]ogs/
+[Mm]emoryCaptures/
+[Uu]ser[Ss]ettings/
+[Rr]ecordings/
+
+# Asset import and package cache artifacts
+Assets/AssetStoreTools*
+Library/PackageCache/
+
+# Addressables / generated streaming content
+Assets/StreamingAssets/aa.meta
+Assets/StreamingAssets/aa/
+
+# Visual Studio / Rider / VS Code
+.vs/
+.vscode/
+*.csproj
+*.sln
+*.slnx
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+
+# Unity auto-generated IDE settings
+*.unityproj
+*.suo
+*.tmp
+*.stackdump
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Plastic SCM / Unity Version Control local metadata
+.plastic/
+
+# Crash reports
+sysinfo.txt
+
+# Root-level local build artifacts currently present in this project
+UnityPlayer.so
+libdecor-0.so.0
+libdecor-cairo.so
+steam-deck.x86_64
+battle-lines-web-v2_BurstDebugInformation_DoNotShip/
