@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=Battle Lines Installer
+Exec=konsole -e bash -c "curl -fsSL https://raw.githubusercontent.com/slaterbe/battle-lines-unity/main/scripts/steam-deck-installer.sh | bash; echo; read -p 'Press enter to close...'"
+Icon=utilities-terminal
+Terminal=false
