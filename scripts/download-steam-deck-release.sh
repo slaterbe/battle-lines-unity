@@ -25,6 +25,7 @@ What it does:
   - Finds a zip asset whose name contains the asset pattern
   - Extracts it into DEST_DIR/<tag>/
   - Marks any *.x86_64 files as executable
+  - Starts the downloaded build automatically
 EOF
 }
 
@@ -103,11 +104,32 @@ unzip -o "${ZIP_PATH}" -d "${TARGET_DIR}" >/dev/null
 echo "Setting executable permission on Linux binaries"
 find "${TARGET_DIR}" -type f -name "*.x86_64" -exec chmod +x {} \;
 
+mapfile -t EXECUTABLES < <(find "${TARGET_DIR}" -type f -name "*.x86_64" | sort)
+
+if [[ ${#EXECUTABLES[@]} -eq 0 ]]; then
+  echo "Error: no Linux executable (*.x86_64) was found in ${TARGET_DIR}." >&2
+  exit 1
+fi
+
+LAUNCH_PATH=""
+
+for executable in "${EXECUTABLES[@]}"; do
+  if [[ "$(basename "${executable}")" == "steam-deck.x86_64" ]]; then
+    LAUNCH_PATH="${executable}"
+    break
+  fi
+done
+
+if [[ -z "${LAUNCH_PATH}" ]]; then
+  LAUNCH_PATH="${EXECUTABLES[0]}"
+fi
+
 echo
 echo "Download complete."
 echo "Files are in: ${TARGET_DIR}"
 echo "Zip file is: ${ZIP_PATH}"
 echo
-echo "To run the game:"
-echo "  cd \"${TARGET_DIR}\""
-echo "  find . -type f -name '*.x86_64'"
+echo "Starting: ${LAUNCH_PATH}"
+
+cd "$(dirname "${LAUNCH_PATH}")"
+exec "./$(basename "${LAUNCH_PATH}")"
